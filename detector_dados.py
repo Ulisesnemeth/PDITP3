@@ -36,8 +36,8 @@ def red_mask(frame):
 def detectar_dados(prev_frame, frame, frame_original):
 
     dados = []
-    prev_canny = cv2.Canny(prev_frame, 1000, 1500)
-    canny = cv2.Canny(frame, 1000, 1500)
+    prev_canny = cv2.Canny(prev_frame, 950, 1500)
+    canny = cv2.Canny(frame, 950, 1500)
     prev_frame_canny = cv2.dilate(prev_canny, None, iterations=2)
     frame_canny = cv2.dilate(canny, None, iterations=2)
     
@@ -73,20 +73,15 @@ def detectar_dados(prev_frame, frame, frame_original):
             if abs(x1 - x2) > 5 or abs(y1 - y2) > 5:
                 return None
         # Si los dados estan quietos contamos el puntaje de cada dado.
-        #imshow(frame)
+
         for contorno in contornos_dados:
             x, y, w, h = contorno
             dado = frame_original[y:y+h, x:x+w]
             dado_gris = cv2.cvtColor(dado, cv2.COLOR_BGR2GRAY)
-            _, dado_gris = cv2.threshold(dado_gris, 127, 255, cv2.THRESH_BINARY)
+            _, dado_gris = cv2.threshold(dado_gris, 100, 255, cv2.THRESH_BINARY)
 
             circles = cv2.HoughCircles(dado_gris, cv2.HOUGH_GRADIENT, dp=1, minDist=10, param1=20, param2=10, minRadius=4, maxRadius=10)
             # Contar los círculos detectados
-
-            #circles = np.uint16(np.around(circles))
-            #for i in circles[0, :]:
-                #cv2.circle(dado, (i[0], i[1]), i[2], (0, 255, 0), 2)
-
             if circles is not None:
                 dados.append((contorno,len(circles[0])))
         return dados
