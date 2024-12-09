@@ -1,10 +1,15 @@
-INSTRUCCIONES
+# Instrucciones
 
-1. DESCARGAR EL REPOSITORIO.
-2. ABRIR EL REPOSITORIO CON VISUAL STUDIO CODE.
-3. CREAR UN ENTORNE VIRTUAL.
-   a. python -m venv ./.venv
-   b. source ./.venv/Scripts/activate
-4. INSTALAR DEPENDENCIAS.
-   a. pip install -r requirements.txt
-5. EJECUTAR EL SCRIPT CON "python detector_dados.py".
+1. Descargar el repositorio.
+2. Abrir el repositorio con Visual Studio Code.
+3. Crear un entorno virtual:
+   python -m venv ./.venv
+   Luego, activar el entorno virtual:
+   - En Windows:
+     ./.venv/Scripts/activate
+   - En macOS/Linux:
+     source ./.venv/bin/activate
+4. Instalar dependencias:
+   pip install -r requirements.txt
+5. Ejecutar el script:
+   python detector_dados.py".
