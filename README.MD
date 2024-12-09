@@ -12,4 +12,4 @@
 4. Instalar dependencias:
    pip install -r requirements.txt
 5. Ejecutar el script:
-   python detector_dados.py".
+   python detector_dados.py.
