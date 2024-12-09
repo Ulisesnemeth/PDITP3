@@ -1,22 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-
-def imshow(img, new_fig=True, title=None, color_img=False, blocking=True, colorbar=False, ticks=False):
-    if new_fig:
-        plt.figure()
-    if color_img:
-        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)) 
-    else:
-        plt.imshow(img, cmap='gray')
-    plt.title(title)
-    if not ticks:
-        plt.xticks([]), plt.yticks([])
-    if colorbar:
-        plt.colorbar()
-    if new_fig:
-        plt.waitforbuttonpress(0)  # Espera indefinidamente por una tecla
-        plt.close()  # Cierra la imagen después de presionar una tecla
 
 def red_mask(frame):
     frame_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -86,8 +69,6 @@ def detectar_dados(prev_frame, frame, frame_original):
                 dados.append((contorno,len(circles[0])))
         return dados
 
-  
-
 
 for i in range(1,5):    
     cap = cv2.VideoCapture(f'./tiradas/tirada_{i}.mp4')  
@@ -112,7 +93,7 @@ for i in range(1,5):
             dados_frame = red_mask(frame)
             dados_prev_frame =  red_mask(prev_frame)
             dados = detectar_dados(dados_prev_frame,dados_frame,frame)
-            #print(dados)
+
             if dados:
                 for (contorno, puntaje) in dados:
                     x, y, h, w = contorno
